@@ -36,13 +36,13 @@
                         {{ $tarea ->nombre }}
                     </td>
                     <td>
-                        {{ $tarea ->finalizada }}
+                        {{ $tarea ->finalizada() }}
                     </td>
                     <td>
-                        {{ $tarea ->fecha_limite }}
+                        {{ $tarea ->fecha_limite  }}
                     </td>
                     <td>
-                        {{ $tarea ->urgencia }}
+                        {{ $tarea ->urgencia() }}
                     </td>
                     <td>
                         {{ $tarea ->descripcion }}
