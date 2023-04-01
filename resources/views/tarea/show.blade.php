@@ -8,17 +8,28 @@
     </h3>
         <ul>
             <li>
-                Finalizada: <strong>{{ $tarea=>estaFinalizada() }}</strong>
+                Finalizada: <strong>{{ $tarea->estaFinalizada() }}</strong>
             </li>
             <li>
-                Finalizada: <strong>{{ $tarea=>estaFinalizada() }}</strong>
+                Urgencia: <strong>{{ $tarea->urgencia() }}</strong>
             </li>
             <li>
-                Finalizada: <strong>{{ $tarea=>estaFinalizada() }}</strong>
-            </li>
-            <li>
-                Finalizada: <strong>{{ $tarea=>estaFinalizada() }}</strong>
+                Fecha Limite: <strong>{{ $tarea->fecha_limite }}</strong>
             </li>
         </ul>
-@endif
+        <p>
+            {{ $tarea->descripcion }}
+        </p>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12 mb-2">
+                <form action="{{ route('tarea.destroy', $tarea) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger btn-sm" type="submit">
+                        Borrar
+                    </button>
+                </form>
+            </div>
+        </div>
 @endsection

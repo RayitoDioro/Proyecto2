@@ -49,7 +49,7 @@ class TareaController extends Controller
      */
     public function show(Tarea $tarea)
     {
-        
+        return view('tarea.show', compact('tarea'));
     }
 
     /**
@@ -84,8 +84,9 @@ class TareaController extends Controller
      *  @param \App\Models\Tarea $tarea
      *  @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy(Tarea $tarea)
     {
-        //
+        $tarea->delete();
+        return redirect()->route('tarea.index');
     }
 }
