@@ -25,7 +25,7 @@
                     Descripcion
                 </th>
                 <th>
-                    opciones
+                    Opciones
                 </th>
             </tr>
         </thead>
@@ -36,7 +36,7 @@
                         {{ $tarea ->nombre }}
                     </td>
                     <td>
-                        {{ $tarea ->finalizada() }}
+                        {{ $tarea ->estafinalizada() }}
                     </td>
                     <td>
                         {{ $tarea ->fecha_limite  }}
@@ -48,7 +48,9 @@
                         {{ $tarea ->descripcion }}
                     </td>
                     <td>
-                        
+                        <a href="{{ route('tarea.edit', $tarea) }}">Editar</a>
+                        <a href="{{ route('tarea.destroy', $tarea) }}">Eliminar</a>
+                        <a href="{{ route('tarea.show', $tarea) }}">Mostrar</a>
                     </td>
                 </tr>
             @endforeach

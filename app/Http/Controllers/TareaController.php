@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarea;
 use Illuminate\Http\Request;
+use App\Http\Requests\tarearequest;
+//use App\Http\Requests;
+//use Illuminate\Foundation\Http\FormRequest;
+//use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
@@ -18,6 +22,8 @@ class TareaController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 
+     *  @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -27,17 +33,13 @@ class TareaController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     *  @param \Illuminate\Http\Request $request
+     *  @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TareaRequest $request)
     {
-        $datos = $request->validate(
-            [
-                'nombre'    => 'required|max:60',
-                'descripcion'    => 'nullable|max:255',
-                'finalizada'       => 'nullable|numeric|min:0|max:1',
-                'urgencia'        => 'required|numeric|min:0|max:2',
-                'fecha_limite'   => 'required|date_format:Y-m-d\TH:i'
-            ]);
+        $datos = $request->validated( );
         $tarea = Tarea::create( $datos);
         return redirect()->route('tarea.index');
     }
@@ -45,29 +47,42 @@ class TareaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Tarea $tarea)
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     *  @param \App\Models\Tarea $tarea
+     *  @return \Illuminate\Http\Response
      */
-    public function edit(string $id)
+    public function edit(Tarea $tarea)
     {
-        //
+        return view('tarea.edit', compact('tarea'));
     }
 
     /**
      * Update the specified resource in storage.
+     * 
+     *  @param \Illuminate\Http\Request $request
+     *  @param \App\Models\Tarea $tarea
+     *  @return \Illuminate\Http\Reponse
      */
-    public function update(Request $request, string $id)
+    public function update(TareaRequest $request, Tarea $tarea)
     {
-        //
+        $datos = $request->validated();
+        //dd($datos);
+        $tarea->update($datos);
+        return redirect()->route('tarea.index');
     }
 
     /**
      * Remove the specified resource from storage.
+     * 
+     *  @param \App\Models\Tarea $tarea
+     *  @return \Illuminate\Http\Response
      */
     public function destroy(string $id)
     {

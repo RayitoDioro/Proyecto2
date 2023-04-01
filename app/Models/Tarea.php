@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Tarea;
 
 class Tarea extends Model
 {
@@ -26,7 +27,7 @@ class Tarea extends Model
         return self::URGENCIAS[ $this->urgencia ];
     }
 
-    public function finalizada(){
+    public function estafinalizada(){
         return $this->finalizada == 1 ? 'Si' : 'No';
     }
 }
